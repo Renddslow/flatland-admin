@@ -1,5 +1,18 @@
-<app-header></app-header>
-<div class="content-wrapper">
-	<router-outlet></router-outlet>
-</div>
-<app-footer></app-footer>
+<mat-sidenav-container class="admin-container">
+	<mat-toolbar>
+		<mat-toolbar-row>
+			<mat-icon (click)="sidenav.open()">menu</mat-icon>
+			<span>Admin</span>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	
+  <mat-sidenav #sidenav class="admin-sidenav">
+    Jolly good!
+  </mat-sidenav>
+
+	<div class="content-wrapper">
+		<router-outlet></router-outlet>
+	</div>
+
+	<app-footer></app-footer>
+</mat-sidenav-container>

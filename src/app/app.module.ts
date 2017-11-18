@@ -3,8 +3,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {
+	MatToolbarModule,
+	MatIconModule,
+	MatSidenavModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
 	{ path: 'sermons', component: AppComponent }
@@ -12,16 +20,20 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
-		NgModule,
 		RouterModule.forRoot(
 			appRoutes
 		),
 		HttpModule,
-		FormsModule
+		FormsModule,
+		BrowserAnimationsModule,
+		MatToolbarModule,
+		MatIconModule,
+		MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
