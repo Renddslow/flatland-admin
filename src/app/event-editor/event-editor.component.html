@@ -1,0 +1,29 @@
+<mat-card>
+	<mat-form-field>
+    <input matInput placeholder="Title" [(ngModel)]="data.title">
+  </mat-form-field>
+	<mat-form-field>
+    <textarea matInput placeholder="Description" [(ngModel)]="data.description" rows="3"></textarea>
+  </mat-form-field>
+	<mat-form-field>
+    <mat-select placeholder="Category" [(ngModel)]="category">
+      <mat-option *ngFor="let category of categoriesList" [value]="category.id">{{ category.label }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+	<mat-form-field>
+		<input matInput placeholder="Location" [(ngModel)]="data.location">
+		<mat-icon matSuffix>location_on</mat-icon>
+	</mat-form-field>
+
+	<time [title]="'Starts At'" *ngIf="data.startsAt" [date]="data.startsAt" (update)="updateTime($event, 'start')"></time>
+	<time [title]="'Ends At'" [date]="data.endsAt" (update)="updateTime($event, 'end')"></time>
+
+	<h4>Square Image</h4>
+	<image [image]="data.image" (update)="data.image"></image>
+
+	<h4>Jumbotron Image</h4>
+	<image [image]="data.jumbotron" (update)="data.jumbotron"></image>
+
+	<button mat-raised-button color="primary" (click)="save()" [disabled]="disable">{{ saveButtonText }}</button>
+</mat-card>

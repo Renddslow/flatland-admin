@@ -1,0 +1,15 @@
+<mat-card>
+	<mat-spinner *ngIf="loading"></mat-spinner>
+	<mat-list>
+		<mat-list-item *ngFor="let sermon of sermons">
+			<h3 matLine>{{ sermon.title }}</h3>
+			<p matLine *ngIf="sermon.series && sermon.series.title">{{ sermon.series.title }}</p>
+			<button mat-icon-button [routerLink]="['/sermons/', sermon.permalink]">
+				<mat-icon>keyboard_arrow_right</mat-icon>
+			</button>
+		</mat-list-item>
+	</mat-list>
+</mat-card>
+<button mat-fab [routerLink]="['/sermons/new']">
+	<mat-icon>create</mat-icon>
+</button>

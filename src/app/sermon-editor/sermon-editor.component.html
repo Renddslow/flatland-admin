@@ -1,0 +1,33 @@
+<mat-card>
+
+	<mat-form-field>
+    <input matInput placeholder="Title" [(ngModel)]="data.title">
+  </mat-form-field>
+
+	<mat-form-field>
+	  <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="data.preached">
+	  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+	  <mat-datepicker #picker></mat-datepicker>
+	</mat-form-field>
+
+	<mat-form-field>
+    <mat-select placeholder="Series" [(ngModel)]="series">
+      <mat-option *ngFor="let series of seriesList" [value]="series.permalink">{{ series.title }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+	<mat-form-field>
+    <mat-select placeholder="Speaker" [(ngModel)]="speaker">
+      <mat-option *ngFor="let speaker of speakersList" [value]="speaker.permalink">{{ speaker.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+	<mat-form-field>
+    <input matInput placeholder="Vimeo Id" [(ngModel)]="data.vimeoId">
+		<mat-hint>Vimeo Id is the set of numbers following https://vimeo.com/</mat-hint>
+  </mat-form-field>
+
+	<image [image]="data.image" (update)="updateImage($event)"></image>
+
+	<button mat-raised-button color="primary" (click)="save()" [disabled]="disable">{{ saveButtonText }}</button>
+</mat-card>

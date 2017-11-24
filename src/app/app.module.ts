@@ -8,20 +8,56 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
 	MatToolbarModule,
 	MatIconModule,
-	MatSidenavModule
+	MatSidenavModule,
+	MatFormFieldModule,
+	MatCardModule,
+	MatInputModule,
+	MatSelectModule,
+	MatDatepickerModule,
+	MatButtonModule,
+	MatSnackBarModule,
+	MatListModule,
+	MatTableModule,
+	MatProgressSpinnerModule
 } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
+import { SermonEditorComponent } from './sermon-editor/sermon-editor.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ImageComponent } from './form/image/image.component';
+import { SermonsComponent } from './sermons/sermons.component';
+import { EventEditorComponent } from './event-editor/event-editor.component';
+import { EventsComponent } from './events/events.component';
+import { TimeComponent } from './form/time/time.component';
+import { BlogComponent } from './blog/blog.component';
+import { BlogEditorComponent } from './blog-editor/blog-editor.component';
 
 const appRoutes: Routes = [
-	{ path: 'sermons', component: AppComponent }
+	{ path: 'dashboard', component: DashboardComponent },
+	{ path: 'sermons', component: SermonsComponent },
+	{ path: 'sermons/:permalink', component: SermonEditorComponent },
+	{ path: 'events', component: EventsComponent },
+	{ path: 'events/:permalink', component: EventEditorComponent },
+	{ path: 'blog', component: BlogComponent },
+	{ path: 'blog/:permalink', component: BlogEditorComponent },
+	{ path: '**', redirectTo: 'dashboard' }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent
+    FooterComponent,
+    SermonEditorComponent,
+    DashboardComponent,
+    ImageComponent,
+    SermonsComponent,
+    EventEditorComponent,
+    EventsComponent,
+    TimeComponent,
+    BlogComponent,
+    BlogEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +69,20 @@ const appRoutes: Routes = [
 		BrowserAnimationsModule,
 		MatToolbarModule,
 		MatIconModule,
-		MatSidenavModule
+		MatSidenavModule,
+		MatFormFieldModule,
+		MatCardModule,
+		MatInputModule,
+		MatSelectModule,
+		MatDatepickerModule,
+		MatMomentDateModule,
+		MatButtonModule,
+		MatSnackBarModule,
+		MatListModule,
+		MatTableModule,
+		MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [MatMomentDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

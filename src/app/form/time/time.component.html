@@ -1,0 +1,20 @@
+<h4>{{ title }}</h4>
+<div class="field-flex">
+	<mat-form-field class="date">
+	  <input matInput [matDatepicker]="startPicker" placeholder="Date" [(ngModel)]="time.date" (change)="change()">
+	  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+	  <mat-datepicker #startPicker></mat-datepicker>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput type="number" max="12" min="1" placeholder="HH" [(ngModel)]="time.hour" (change)="change()">
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput type="number" max="59" min="0" placeholder="MM" [(ngModel)]="time.minute" (change)="change()">
+	</mat-form-field>
+	<mat-form-field>
+		<mat-select [(ngModel)]="time.meridian" (change)="change()">
+			<mat-option [value]="'am'">AM</mat-option>
+			<mat-option [value]="'pm'">PM</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>

@@ -1,0 +1,14 @@
+<mat-card>
+
+	<mat-form-field>
+    <input matInput placeholder="Title" [(ngModel)]="data.title">
+  </mat-form-field>
+
+	<mat-form-field>
+    <textarea matInput placeholder="Content" rows="20"></textarea>
+  </mat-form-field>
+
+	<image [image]="data.image" (update)="updateImage($event)"></image>
+
+	<button mat-raised-button color="primary" (click)="save()" [disabled]="disable">Save</button>
+</mat-card>

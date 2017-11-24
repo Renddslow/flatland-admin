@@ -1,18 +1,38 @@
-<mat-sidenav-container class="admin-container">
-	<mat-toolbar>
-		<mat-toolbar-row>
-			<mat-icon (click)="sidenav.open()">menu</mat-icon>
-			<span>Admin</span>
-		</mat-toolbar-row>
-	</mat-toolbar>
-	
-  <mat-sidenav #sidenav class="admin-sidenav">
-    Jolly good!
-  </mat-sidenav>
+<div *ngIf="firebase.auth().currentUser">
+	<mat-sidenav-container class="admin-container">
+		<mat-toolbar color="primary">
+			<mat-toolbar-row>
+				<mat-icon (click)="sidenav.open()">menu</mat-icon>
+				<span>Admin</span>
+			</mat-toolbar-row>
+		</mat-toolbar>
 
-	<div class="content-wrapper">
-		<router-outlet></router-outlet>
-	</div>
+	  <mat-sidenav #sidenav class="drawer">
+	    <div class="drawer-header" tabindex="-1">Admin</div>
+			<div class="drawer-content">
+				<a *ngFor="let navItem of navItems" [routerLink]="[navItem.link]" [routerLinkActive]="'active'" (click)="sidenav.close()">
+					<mat-icon class="nav-icon">{{ navItem.icon }}</mat-icon>
+					{{ navItem.label }}
+				</a>
+			</div>
+	  </mat-sidenav>
 
-	<app-footer></app-footer>
-</mat-sidenav-container>
+		<div class="content-wrapper">
+			<router-outlet></router-outlet>
+		</div>
+
+		<app-footer></app-footer>
+	</mat-sidenav-container>
+</div>
+<div *ngIf="!firebase.auth().currentUser">
+	<mat-card>
+		<h3>Login to admin.flatlandchurch.com</h3>
+		<mat-form-field>
+			<input matInput type="email" placeholder="Email" [(ngModel)]="user.email">
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="password" placeholder="Password" [(ngModel)]="user.password">
+		</mat-form-field>
+		<button mat-raised-button color="primary" (click)="login()">Login</button>
+	</mat-card>
+</div>

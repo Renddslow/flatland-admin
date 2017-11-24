@@ -1,0 +1,8 @@
+<div class="image-field">
+	<p *ngIf="!image">Tap the arrow to pick image</p>
+	<img [src]="image">
+		<input type="file" id="image" (change)="uploadImage($event)">
+		<button mat-button>
+			<label for="image"><mat-icon>file_upload</mat-icon></label>
+		</button>
+</div>

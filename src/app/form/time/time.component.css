@@ -1,0 +1,16 @@
+h4 {
+	margin: 8px 0 4px;
+}
+
+.field-flex {
+	display: flex;
+}
+
+.mat-form-field {
+	width: 60px;
+	margin-right: 8px;
+}
+
+.mat-form-field.date {
+	width: 140px;
+}
