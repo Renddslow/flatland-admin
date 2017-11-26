@@ -18,7 +18,9 @@ import {
 	MatSnackBarModule,
 	MatListModule,
 	MatTableModule,
-	MatProgressSpinnerModule
+	MatProgressSpinnerModule,
+	MatChipsModule,
+	MatCheckboxModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -33,6 +35,7 @@ import { EventsComponent } from './events/events.component';
 import { TimeComponent } from './form/time/time.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogEditorComponent } from './blog-editor/blog-editor.component';
+import { NotificationComponent } from './notification/notification.component';
 
 const appRoutes: Routes = [
 	{ path: 'dashboard', component: DashboardComponent },
@@ -42,6 +45,7 @@ const appRoutes: Routes = [
 	{ path: 'events/:permalink', component: EventEditorComponent },
 	{ path: 'blog', component: BlogComponent },
 	{ path: 'blog/:permalink', component: BlogEditorComponent },
+	{ path: 'notify', component: NotificationComponent },
 	{ path: '**', redirectTo: 'dashboard' }
 ]
 
@@ -57,7 +61,8 @@ const appRoutes: Routes = [
     EventsComponent,
     TimeComponent,
     BlogComponent,
-    BlogEditorComponent
+    BlogEditorComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,9 @@ const appRoutes: Routes = [
 		MatSnackBarModule,
 		MatListModule,
 		MatTableModule,
-		MatProgressSpinnerModule
+		MatProgressSpinnerModule,
+		MatChipsModule,
+		MatCheckboxModule
   ],
   providers: [MatMomentDateModule],
   bootstrap: [AppComponent]

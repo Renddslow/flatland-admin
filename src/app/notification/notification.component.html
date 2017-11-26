@@ -1,0 +1,7 @@
+<mat-card>
+	<mat-form-field>
+		<textarea matInput placeholder="Message" [(ngModel)]="message" (keydown)="updateLength()"></textarea>
+		<mat-hint>{{ length }}/240 characters</mat-hint>
+	</mat-form-field>
+	<button mat-raised-button color="primary" (click)="sendNotification()">Send Notification</button>
+</mat-card>

@@ -14,9 +14,7 @@ export class AppComponent implements OnInit {
 	};
 	displayError = false;
 
-	navItems = [
-		{ label: 'Dashboard', link: '/dashboard', icon: 'dashboard' }
-	];
+	navItems = [];
 
 	ngOnInit() {
 		this.firebase.database()
@@ -24,7 +22,9 @@ export class AppComponent implements OnInit {
 			.on('value', userResults => {
 				const user = userResults.val();
 				const roles = user.roles;
+				window['user'] = user;
 
+				this.navItems = [ { label: 'Dashboard', link: '/dashboard', icon: 'dashboard' } ];
 				if (roles.sermon_publisher) {
 					this.navItems.push({ label: 'Sermons', link: '/sermons', icon: 'ondemand_video' });
 				}

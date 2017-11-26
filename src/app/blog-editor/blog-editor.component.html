@@ -4,11 +4,23 @@
     <input matInput placeholder="Title" [(ngModel)]="data.title">
   </mat-form-field>
 
+	<h4>Be sure to conform to <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown Format</a></h4>
 	<mat-form-field>
-    <textarea matInput placeholder="Content" rows="20"></textarea>
+    <textarea matInput placeholder="Content" rows="20" [(ngModel)]="data.content" (keydown)="updateWordCount()"></textarea>
+		<mat-hint>Word count: {{ length }}</mat-hint>
   </mat-form-field>
 
 	<image [image]="data.image" (update)="updateImage($event)"></image>
 
-	<button mat-raised-button color="primary" (click)="save()" [disabled]="disable">Save</button>
+	<h4>Topics</h4>
+	<mat-checkbox *ngFor="let topic of topics" [value]="topic.id" [(ngModel)]="topicMap[topic.id]">{{ topic.name }}</mat-checkbox>
+
+	<mat-form-field>
+	  <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="data.date">
+	  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+	  <mat-datepicker #picker></mat-datepicker>
+	</mat-form-field>
+
+	<button mat-button (click)="save()" [disabled]="disable">Save</button>
+	<button mat-raised-button color="primary" *ngIf="canPublish" (click)="publish()" [disabled]="disable">Publish</button>
 </mat-card>

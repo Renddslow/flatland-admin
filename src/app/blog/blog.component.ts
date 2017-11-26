@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-blog',
@@ -16,15 +17,15 @@ export class BlogComponent implements OnInit {
   ngOnInit() {
 		this.loading = true;
 		this.firebase.database()
-			.ref('blogPosts')
+			.ref('blogMeta')
 			.on('value', results => {
 				if (results.val()) {
 					this.posts = Object.keys(results.val())
 						.map(key => {
 							const result = results.val()[key];
-							result.permalink = key;
+							result.date = moment(parseInt(key, 10) * 1000).format('MMMM D, YYYY');
 							return result;
-						});
+						}).reverse();
 				}
 				this.loading = false;
 			});
