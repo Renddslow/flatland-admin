@@ -22,7 +22,10 @@ export class EventEditorComponent implements OnInit {
 		},
 		description: null,
 		startsAt: 0,
-		endsAt: 0
+		endsAt: 0,
+		location: 'Flatland Church',
+		image: null,
+		jumbotron: null
 	};
 
 	firebase = window['firebase'];
