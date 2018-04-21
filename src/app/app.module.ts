@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SimplemdeModule, SIMPLEMDE_CONFIG } from 'ng2-simplemde';
 import {
 	MatToolbarModule,
 	MatIconModule,
@@ -72,6 +72,10 @@ const appRoutes: Routes = [
 		HttpModule,
 		FormsModule,
 		BrowserAnimationsModule,
+		SimplemdeModule.forRoot({
+			provide: SIMPLEMDE_CONFIG,
+			useValue: {}
+		}),
 		MatToolbarModule,
 		MatIconModule,
 		MatSidenavModule,

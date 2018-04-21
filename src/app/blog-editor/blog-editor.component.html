@@ -4,11 +4,7 @@
     <input matInput placeholder="Title" [(ngModel)]="data.title">
   </mat-form-field>
 
-	<h4>Be sure to conform to <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown Format</a></h4>
-	<mat-form-field>
-    <textarea matInput placeholder="Content" rows="20" [(ngModel)]="data.content" (keydown)="updateWordCount()"></textarea>
-		<mat-hint>Word count: {{ length }}</mat-hint>
-  </mat-form-field>
+	<simplemde id="content" placeholder="Content" rows="20" [(ngModel)]="data.content"></simplemde>
 
 	<image [image]="data.image" (update)="updateImage($event)"></image>
 

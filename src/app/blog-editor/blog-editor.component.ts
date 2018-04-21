@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Http } from '@angular/http';
 
 import * as extend from 'extend';
 import * as moment from 'moment';
 import * as slug from 'slug';
+import * as simplemde from 'simplemde';
 
 @Component({
   selector: 'app-blog-editor',
@@ -35,9 +37,9 @@ export class BlogEditorComponent implements OnInit {
 
 	canPublish = null;
 
-	constructor(private router: Router, private route: ActivatedRoute) {
+	constructor(private router: Router, private route: ActivatedRoute, private http: Http) {
 		slug.defaults.mode = 'rfc3986';
-		const user = window['user'];
+		const user = JSON.parse(window.localStorage.getItem('flatland:user'));
 		this.data.author = {
 			name: user['name'],
 			position: user['role']
@@ -143,6 +145,17 @@ export class BlogEditorComponent implements OnInit {
 		req.published = true;
 		req.approved = true;
 		const permalink = this.permalink !== 'new' ? this.permalink : slug(req.title);
+		if (req.topics['devotionals']) {
+			this.http.post(
+				'https://api.flatlandchurch.com/v2/emails/devotional?key=202f1c42-7054-46ee-8ca2-ddc85f9c789b',
+				{
+					permalink,
+					userId: this.firebase.auth().currentUser.uid,
+				}
+			).subscribe(res => {
+				console.log('Mailchimp email sent!');
+			});
+		}
 		this.saveContent(req, permalink);
 	}
 
@@ -166,7 +179,8 @@ export class BlogEditorComponent implements OnInit {
 				author: data.author.name,
 				published: data.published,
 				approved: data.approved,
-				permalink
+				permalink,
+				topics: data.topics
 			});
 	}
 

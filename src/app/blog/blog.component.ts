@@ -21,11 +21,13 @@ export class BlogComponent implements OnInit {
 			.on('value', results => {
 				if (results.val()) {
 					this.posts = Object.keys(results.val())
+						.reverse()
+						.slice(0, 20)
 						.map(key => {
 							const result = results.val()[key];
 							result.date = moment(parseInt(key, 10) * 1000).format('MMMM D, YYYY');
 							return result;
-						}).reverse();
+						});
 				}
 				this.loading = false;
 			});
