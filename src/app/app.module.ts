@@ -20,7 +20,8 @@ import {
 	MatTableModule,
 	MatProgressSpinnerModule,
 	MatChipsModule,
-	MatCheckboxModule
+	MatCheckboxModule,
+	MAT_DATE_LOCALE
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -93,7 +94,10 @@ const appRoutes: Routes = [
 		MatChipsModule,
 		MatCheckboxModule
   ],
-  providers: [MatMomentDateModule],
+  providers: [
+		MatMomentDateModule,
+		{provide: MAT_DATE_LOCALE, useValue: 'en-US'}
+	],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
