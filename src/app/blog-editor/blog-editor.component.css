@@ -1,4 +1,8 @@
+.mat-card {
+  width: 80%;
+}
+
 .mat-checkbox {
 	display: block;
-	margin-bottom: 8px; 
+	margin-bottom: 8px;
 }
